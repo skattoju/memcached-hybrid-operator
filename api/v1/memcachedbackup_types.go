@@ -28,14 +28,18 @@ type MemcachedBackupSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of MemcachedBackup. Edit memcachedbackup_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	//+kubebuilder:validation:Minimum=0
+	// Size is the number of pods in the memcached deployment
+	Size int32 `json:"size"`
 }
 
 // MemcachedBackupStatus defines the observed state of MemcachedBackup
 type MemcachedBackupStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	//Nodes are the names of the memcached pods
+	Nodes []string `json:"nodes"`
 }
 
 //+kubebuilder:object:root=true
